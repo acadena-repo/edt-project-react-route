@@ -4,9 +4,10 @@ import loading from "../public/Loading.gif"
 function App() {
 
   const [criptos, setCriptos] = useState()
+  const URL = import.meta.env.VITE_APP_CRIPTO_URL
 
   useEffect(() => {
-    fetch("https://api.coincap.io/v2/assets")
+    fetch(`${URL}/assets`)
      .then((resp) => resp.json())
      .then((data) => {setCriptos(data.data)})
      .catch(() => {console.error("La peticion fallo")})
