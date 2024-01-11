@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
+import axios from "axios"
+import Cripto from './Cripto'
 import loading from "../public/Loading.gif"
+import './App.css'
 
 function App() {
 
@@ -7,9 +10,8 @@ function App() {
   const URL = import.meta.env.VITE_APP_CRIPTO_URL
 
   useEffect(() => {
-    fetch(`${URL}/assets`)
-     .then((resp) => resp.json())
-     .then((data) => {setCriptos(data.data)})
+    axios.get(`${URL}/assets`)
+     .then((resp) => {setCriptos(resp.data.data)})
      .catch(() => {console.error("La peticion fallo")})
   }, [])
 
@@ -18,14 +20,14 @@ function App() {
 
 
   return (
-    <>
+    <div className='app-container'>
       <h1>Lista de Criptomonedas</h1>
-      <ol>
-        { criptos.map(({name, priceUsd}) => (
-          <li key={name}>Nombre {name} con un precio de: ${priceUsd}</li>
+      <div className='cripto-container'>
+        { criptos.map(({id, name, priceUsd}) => (
+          <Cripto key={id} name={name} price={priceUsd} />
         ))}
-      </ol>
-    </>
+      </div>
+    </div>
   )
 }
 
