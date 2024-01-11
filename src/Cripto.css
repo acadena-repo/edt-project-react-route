@@ -12,3 +12,11 @@
   .label {
     color: skyblue
   }
+
+  .increment {
+    color: greenyellow;
+  }
+
+  .decrement {
+    color: rgb(235, 46, 46);
+  }
