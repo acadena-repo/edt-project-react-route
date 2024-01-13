@@ -25,6 +25,7 @@ function Lista() {
       <div className='cripto-container'>
         { criptos.map(({id, name, priceUsd, symbol, changePercent24Hr}) => (
           <Cripto key={id} 
+          id = {id}
           name={name} 
           price={priceUsd} 
           code={symbol} 
